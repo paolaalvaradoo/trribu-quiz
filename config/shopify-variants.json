@@ -1,0 +1,9 @@
+{
+  "shampoo": { "variant_id": "PENDIENTE", "precio": 79 },
+  "acond":   { "variant_id": "PENDIENTE", "precio": 79 },
+  "masc":    { "variant_id": "PENDIENTE", "precio": 109 },
+  "crema":   { "variant_id": "PENDIENTE", "precio": 89, "nombre_web": "La Crema (El Acondicionador Sin Enjuague)" },
+  "regalo_masc_viaje":  { "variant_id": "PENDIENTE", "tamano": "100 ml" },
+  "regalo_crema_viaje": { "variant_id": "PENDIENTE", "tamano": "50 ml" },
+  "regalo_toalla":      { "variant_id": "PENDIENTE" }
+}

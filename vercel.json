@@ -1,0 +1,14 @@
+{
+  "outputDirectory": "public",
+  "rewrites": [{ "source": "/", "destination": "/quiz.html" }],
+  "functions": {
+    "api/*.js": { "includeFiles": "{public/quiz.html,config/shopify-variants.json}" }
+  },
+  "crons": [{ "path": "/api/retry-klaviyo", "schedule": "0 13 * * *" }],
+  "headers": [
+    { "source": "/(.*)", "headers": [
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+    ] }
+  ]
+}

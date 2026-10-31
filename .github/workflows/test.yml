@@ -1,0 +1,16 @@
+name: Tests del quiz
+on:
+  push:
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Motor (26 perfiles + 20.000 al azar)
+        run: node tests/run_tests.js public/quiz.html
+      - name: Endpoint (validación, consentimiento, Airtable, Klaviyo, reintento)
+        run: node --test tests/api.test.js

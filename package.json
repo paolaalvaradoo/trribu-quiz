@@ -1,0 +1,10 @@
+{
+  "name": "trribu-quiz",
+  "private": true,
+  "description": "Quiz TRRIBÚ V41: endpoint Vercel con el motor en el servidor, Airtable, Klaviyo y carrito Shopify",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node tests/run_tests.js public/quiz.html && node --test tests/api.test.js",
+    "e2e": "node scripts/e2e-local.js"
+  }
+}
