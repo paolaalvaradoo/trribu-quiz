@@ -64,6 +64,13 @@ Datos que faltan para publicar. No se inventó ninguno: el código queda listo y
   - No suma puntos.
   - Se guarda en Klaviyo (`quiz_otro_senales`, `quiz_otro_tratamientos`, `quiz_otro_futuros`) y en Airtable (`p1_otro`, `p3_otro`, `p9_otro`).
   - Si en la pregunta 1 marca solo «Otro», la tarjeta es «Nos contaste algo más», en lugar de «Tu pelo está bien hoy».
+- **Coherencia del resultado** (auditoría del 31-oct, `scripts/auditoria.js`):
+  - **Etiqueta nueva «Control del frizz y del calor»** (`frizz_calor`). Sale cuando hay frizz y plancha o calor diario, y la rutina trae La Crema (El Acondicionador Sin Enjuague).
+  - **«Cuidado ante el calor»** ahora sale también con plancha, no solo con calor diario.
+  - **Tarjeta del calor:** si la rutina trae La Mascarilla y La Crema (El Acondicionador Sin Enjuague), dice «necesita reparación y un cuidado que lo ayude a proteger antes de usarlo».
+  - **Cada producto extra de la rutina queda explicado** arriba y en una tarjeta, sin mover la prioridad n.º 1.
+  - **Tarjeta de porosidad:** solo menciona reparación si la rutina trae La Mascarilla.
+  - **Rutinas y puntajes:** idénticos a la V41 original (test con 5.000 casos).
 - **Para revisar cada semana:** leer los textos de «Otro». Lo que se repita, como «keratina solo para brillo», se convierte en una opción fija en la versión siguiente.
 
 Solo integración, nada de copy, preguntas ni puntajes (el original está en `docs/quiz_V41_original.html`):

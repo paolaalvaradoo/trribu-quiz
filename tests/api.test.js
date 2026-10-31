@@ -256,3 +256,32 @@ test('el correo recibe cada hallazgo con su explicación (y vacío si hay menos 
   const solo = buildResult({ ...sub, answers: { ...sub.answers, signos: ['bien'], porosidad: 'baja', tratamientos: ['ninguno'], prio: ['prevenir'] } }).properties;
   assert.equal(solo.quiz_hallazgo_3_titulo, '');
 });
+
+test('las rutinas y los puntajes son idénticos a la V41 original (5.000 al azar)', () => {
+  const { createEngine } = require('../lib/engine');
+  const orig = createEngine(path.join(__dirname, '..', 'docs', 'quiz_V41_original.html')), eng = getEngine();
+  const pick = a => a[Math.random() * a.length | 0], some = a => a.filter(() => Math.random() < .3);
+  for (let i = 0; i < 5000; i++) {
+    const s = some(['enredo', 'quiebre', 'puntas', 'cuerpo', 'opaco', 'secoTodo', 'textura', 'canas', 'frizz']);
+    const t = some(['tinteRaices', 'tinteTodo', 'mechas', 'keratina']);
+    const a = { signos: s.length ? s : ['bien'], porosidad: pick(['alta', 'media', 'baja']), tratamientos: t.length ? t : ['ninguno'], calor: pick(['natural', 'secadora', 'plancha', 'diario']),
+      tipo: pick(['lacio', 'suaves', 'ondas', 'rizado', 'crespo']), grosor: pick(['fino', 'medio', 'grueso', 'nose']), cuero: pick(['graso', 'equilibrado', 'seco', 'varia']),
+      prio: some(['enredo', 'quiebre', 'cuerpo', 'pelitos', 'canas', 'ondas', 'frizz', 'suave', 'brillo']).slice(0, 3), futuros: ['nada'] };
+    if (!a.prio.length) a.prio = ['prevenir'];
+    const x = orig.run(a), y = eng.run(a);
+    assert.equal(JSON.stringify([y.routine, y.m, y.c, y.recomendacion]), JSON.stringify([x.routine, x.m, x.c, x.recomendacion]));
+  }
+});
+
+test('caso de Pao (31-oct): plancha + rutina completa → se habla de proteger el pelo del calor', () => {
+  const r = getEngine().run({ signos: ['quiebre', 'textura', 'canas'], porosidad: 'alta', tratamientos: ['keratina'], calor: 'plancha', tipo: 'lacio', grosor: 'fino', cuero: 'graso', prio: ['quiebre', 'canas', 'frizz'], futuros: ['otro'], edad: '50' });
+  assert.equal(r.routine, 'SAMC');
+  assert.ok(r.needs.includes('frizz_calor'), r.needs.join());
+  const i = r.cards.indexOf('Usas calor con frecuencia');
+  if (i >= 0) assert.match(r.cardTexts[i], /proteger/);
+});
+
+test('auditoría de coherencia (20.000 combinaciones) sin errores', () => {
+  const { execFileSync } = require('child_process');
+  execFileSync(process.execPath, [path.join(__dirname, '..', 'scripts', 'auditoria.js'), '20000'], { stdio: 'pipe' });
+});
