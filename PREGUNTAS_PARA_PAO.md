@@ -7,12 +7,37 @@ Datos que faltan para publicar. No se inventó ninguno: el código queda listo y
 | # | Pregunta | Qué está hecho mientras tanto | Dónde va la respuesta |
 |---|---|---|---|
 | 1 | **¿Dónde vive el quiz?** ¿Como sección nativa del tema de Shopify (Flama) o como `quiz.html` en Vercel, enlazado o embebido desde trribu.com? | Funciona de las dos formas. En Vercel abre en `/`. Si se embebe en Shopify, se define `window.TRRIBU_API_BASE` con la URL de Vercel y se agrega `https://trribu.com` a `ALLOWED_ORIGINS`. El carrito detecta solo si está dentro de la tienda (`/cart/add.js`) o fuera (permalink). | Respuesta de Pao y Flama |
-| 2 | **Modo lanzamiento: ¿se pide el correo antes del resultado** (referencia LolaVie, 29-oct) o se mantiene el resultado primero (guía V32)? | Se mantiene el resultado primero, como en el HTML V41. | Si cambia, hace falta un HTML nuevo aprobado (no se tocó el copy) |
+| 2 | **Modo lanzamiento: ¿se pide el correo antes del resultado** (referencia LolaVie, 29-oct) o se mantiene el resultado primero (guía V32)? | **Decidido por Pao el 31-oct: sí, cuando la persona llega directo al quiz** (ver «Dos caminos de entrada» abajo). Hoy el HTML V41 sigue mostrando el resultado primero. | Flama: diseño y copy de la pantalla del correo; HTML nuevo aprobado por Pao |
 | 3 | **¿Cómo se entregan los regalos** de lanzamiento en Shopify: descuento automático «compra X, lleva Y», Shopify Function o app de regalo? | Nada: el quiz solo muestra la línea del regalo. El carrito agrega únicamente los productos de la rutina. | Configuración de Shopify |
 | 4 | **Canal de WhatsApp:** ¿Klaviyo WhatsApp, YaVendio o solo guardar el dato? | Con c3 se guarda `consent_whatsapp`, el teléfono `+51…` en el perfil y, si existe, la persona entra a la lista «TRRIBÚ · WhatsApp». **No se suscribe a ningún canal.** | `KLAVIYO_LIST_WHATSAPP` y, si se elige Klaviyo WhatsApp, un cambio en `lib/klaviyo.js` |
 | 5 | **URL de la política de privacidad.** Bloquea la publicación. | Mientras falte, el enlace sigue mostrando el aviso «PENDIENTE» del HTML. Cuando se defina, el quiz la enlaza solo. | `PRIVACY_POLICY_URL` |
 | 6 | **IDs de variantes** de los 4 productos, los 2 tamaños de viaje y La Toalla. Bloquea el carrito. | Con «PENDIENTE», el botón muestra el aviso del HTML. Con los IDs, arma el carrito con exactamente la rutina y `quiz_submission_id` como atributo. | `config/shopify-variants.json` |
 | 7 | ✅ **Resuelto 31-oct:** listas creadas con los nombres del Excel (IDs en `docs/KLAVIYO.md`). Queda confirmar el nombre final de «Newsletter». **Nombres e IDs de las listas en Klaviyo.** El Excel propone: TRRIBÚ · Lista de espera, TRRIBÚ · Newsletter (nombre pendiente), TRRIBÚ · WhatsApp, TRRIBÚ · Panel de pruebas e Interno · Pruebas. | El código usa variables de entorno con los IDs. Las listas todavía no están creadas (paso 2 del Excel, a cargo de Flama). | `KLAVIYO_LIST_*` |
+
+## Para Flama · Dos caminos de entrada al quiz (decisión de Pao, 31-oct)
+
+**Camino 1. Inscrita en la lista de espera.**
+- Recorrido: landing (la llamada) → lista de espera → correo «Queremos conocerte» → quiz.
+- Al terminar, ve su resultado y además lo recibe por correo (flujo F1b).
+- Ya funciona; Pao lo probó el 31-oct.
+
+**Camino 2. Llega directo al quiz.**
+- Entra por el link «Conoce tu pelo» en la bio de redes o por anuncios que llevan al quiz, sin pasar por la lista de espera.
+- Al terminar la última pregunta, **no ve el resultado de inmediato**. Primero aparece la pantalla del correo, con el mensaje «Te enviamos tu resultado por correo».
+  - Pide nombre, correo y los consentimientos c1 a c4, igual que hoy.
+  - Al enviarla, se muestra el resultado en pantalla y llega por correo (flujo F1, rama «Ya estás en la tribu»).
+- Debajo, en letra tenue, va la opción **«Prefiero verlo en pantalla»**, que muestra el resultado sin pedir el correo.
+  - Esas personas no quedan en Klaviyo; solo cuentan como respuesta anónima.
+  - Pendiente: Pao debe confirmar que acepta esa pérdida.
+
+**Cómo saber por qué camino llegó.**
+- Un parámetro en el link, por ejemplo `?origen=lista` en los correos y `?origen=directo` en la bio y en los anuncios, más las UTM.
+- Sin parámetro, se asume el camino 2.
+- El origen se guarda en el perfil como `quiz_origen`, para medir cada camino.
+
+**Aplica a las dos fases.** También se pueden pautar anuncios al quiz en el prelanzamiento.
+
+**Copy pendiente de Pao.** El texto final de la pantalla del correo y el de la opción tenue los aprueba Pao. No se cambia el copy de `quiz.html` sin un HTML aprobado.
 
 ## Otras preguntas que salieron al integrar
 
