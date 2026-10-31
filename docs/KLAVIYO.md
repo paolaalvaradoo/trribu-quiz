@@ -33,7 +33,7 @@ Embudo: anuncio → landing (o quiz) → lista de espera → bienvenida → invi
 | Flujo | ID | Disparador | Qué hace | Estado |
 |---|---|---|---|---|
 | F1 · Bienvenida lista de espera (landing + quiz) | `VC7pKB` | Entra a la Lista de espera | Si hizo el quiz en las últimas 24 h → «Ya estás en la tribu» con su resultado. Si vino por la landing → «Ya estás en la lista»; día 2, si no hizo el quiz → «Queremos conocerte» (botón al quiz); día 5, si sigue sin hacerlo → «¿Conversamos sobre tu pelo?». Sale si compra. | Activo |
-| F1b · Tu resultado (quien ya estaba en la lista) | `TCpZpP` | Quiz completado en modo prelanzamiento, y lleva al menos 1 h en la lista | «Tu resultado: lo que necesita tu pelo» | Activo |
+| F1b · Tu resultado (cada vez que hace el quiz) | `VLiqiC` | Quiz completado en modo prelanzamiento, y lleva al menos 1 h en la lista | «Tu resultado: lo que necesita tu pelo», **cada vez** que repite el quiz (sin límite) | Activo (reemplaza a `TCpZpP`, apagado) |
 | F1c · Historia y Sello | `X8Cw5p` | Entra a la Lista de espera | Día 7: historia de Pao e Isabel. Día 11: el Sello. | Activo, ambos correos en **manual** hasta que Pao complete los «[PAO: …]» |
 | F1 anterior y bienvenida V25 | `STrWsE`, `X94AbN` | — | Reemplazados | Apagados |
 | F2 · Día de lanzamiento | — | Campaña 16-nov a S02 | — | Pendiente |
