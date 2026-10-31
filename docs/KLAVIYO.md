@@ -22,6 +22,8 @@ Según `docs/TRRIBU_Klaviyo_Configuracion_V1_20261031.xlsx`. Los IDs no son secr
 
 S01 `QQqhSb` · S02 `QT2y54` · S03 `TQRgtp` · S10 `T2yGZt` · S11 `X7Mg99` · S12 `Yhc72Z` · S13 `XEb4qn` · S20 `Scg9xx` · S21 `XzxN4Y` · S22 `WWwKsm` · S23 `TU4LGC` · S24 `UssyXR` · S25 `Xqhhnc` · S26 `Szpr7Y` · S27 `TA8Zmq` · S28 `RaG5ei` · S30 `TvvK22` · S31 `XCKiid` · S32 `QUNic8` · S33 `QQb3QJ` · S34 `Ukpywi` · S40 `TCKfyh` · S41 `R8F55M` · S42 `VSVEYB` · S50 `X9z2gd` · S51 `RFE7pn` · S52 `RwpAGA` · S53 `RrLkmc` · S54 `SBbbf4` · S60 `XTPzr7` · S61 `Ueky4K` · S62 `RNTBVD` · S63 `X2UKLi` · S70 `RyZQTt` · S71 `W9ZW7v` · S72 `TuFeWd` · S73 `QRmxVs`
 
+**Edad por tramo del quiz (P10)**, además de los grupos grandes S50–S54: E1 menos de 35 `QPeMBp` · E2 35–39 `UjtigX` · E3 40–44 `TBNZiW` · E4 45–49 `R7JNQs` · E5 50–54 `Y3yzQc` · E6 55–59 `Uhsi8s` · E7 60–64 `Yk4B5f` · E8 65 o más `XCqi7e`. Todos excluyen Interno · Pruebas. Los mensajes por edad todavía no están definidos (decisión de Pao).
+
 S71 y S72 filtran «Placed Order» por la propiedad `Items` con los nombres de producto de Shopify («El Shampoo», «El Acondicionador», «La Mascarilla», «La Crema…»). Verificar con el primer pedido real que los nombres coinciden.
 
 ## Flujos (prelanzamiento)
