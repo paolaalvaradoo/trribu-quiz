@@ -46,3 +46,13 @@ Embudo: anuncio → landing (o quiz) → lista de espera → bienvenida → invi
 
 ## Perfiles de prueba
 Los dos correos de Pao (`@trribu.com` y `@grupokoti.pe`) están en Interno · Pruebas con un envío V41 de prueba cada uno (rutinas SAMC y SA), cargado como histórico (no disparó flujos). Sirvieron para crear las propiedades del perfil (paso 3 del Excel).
+
+## Propiedades agregadas el 31-oct
+
+| Propiedad | Qué guarda | Dónde se usa |
+|---|---|---|
+| `quiz_hallazgo_1_titulo` … `quiz_hallazgo_3_titulo` | Título de cada hallazgo, en el mismo orden que en pantalla. Vacío si hay menos de tres. | Correos con resultado: «Tu resultado» (plantilla `S2cCvQ`, F1b v2) y «Ya estás en la tribu» (`YzW89W`, F1) |
+| `quiz_hallazgo_1_texto` … `quiz_hallazgo_3_texto` | Explicación de cada hallazgo | Los mismos correos |
+| `quiz_otro_senales`, `quiz_otro_tratamientos`, `quiz_otro_futuros` | Texto libre de «Otro», hasta 80 caracteres | Lectura semanal: no suma puntos |
+
+Los botones de los correos de invitación (`TK4fTJ`) y de recordatorio (`YviRNy`) llevan `?origen=lista`.
