@@ -245,3 +245,14 @@ test('caída: la opción y la tarjeta usan sus palabras y derivan al dermatólog
   const r = eng.run({ signos: ['quiebre'], porosidad: 'media', tratamientos: ['ninguno'], calor: 'natural', tipo: 'lacio', grosor: 'medio', cuero: 'equilibrado', prio: ['frizz'], futuros: ['nada'] });
   assert.ok(r.cards.includes('Notas que se te cae más pelo'));
 });
+
+test('el correo recibe cada hallazgo con su explicación (y vacío si hay menos de 3)', () => {
+  const { buildResult } = require('../lib/submission');
+  const sub = { submission_id: 'quiz_1793461935485_abc', modo: 'prelanzamiento', nombre: 'P', email: 'p@x.com', consent: { datos: true, correo: true, whatsapp: false, panel: false }, fecha: 'x',
+    answers: { signos: ['quiebre', 'frizz'], porosidad: 'alta', tratamientos: ['mechas'], calor: 'natural', tipo: 'ondas', grosor: 'medio', cuero: 'equilibrado', prio: ['frizz'], futuros: ['nada'] } };
+  const p = buildResult(sub).properties;
+  assert.equal(p.quiz_hallazgo_1_titulo, p.quiz_result_findings[0]);
+  assert.ok(p.quiz_hallazgo_1_texto.length > 20);
+  const solo = buildResult({ ...sub, answers: { ...sub.answers, signos: ['bien'], porosidad: 'baja', tratamientos: ['ninguno'], prio: ['prevenir'] } }).properties;
+  assert.equal(solo.quiz_hallazgo_3_titulo, '');
+});
