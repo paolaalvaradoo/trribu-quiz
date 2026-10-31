@@ -73,6 +73,7 @@ Se crea a mano una vez. El campo principal es `submission_id`. Con `typecast`, l
 | `p2_porosidad`, `p4_calor`, `p5_tipo`, `p6_grosor`, `p7_cuero`, `p8_prioridad_1`, `p10_edad` | selección simple |
 | `m`, `c` | número |
 | `tarjetas`, `error_klaviyo` | texto largo |
+| `p1_otro`, `p3_otro`, `p9_otro` | texto (lo que escribió en «Otro», máx. 80 caracteres) |
 
 `p8_prioridad_1` es un campo extra a lo pedido en la § 4. Airtable no puede agrupar por el primer elemento de una selección múltiple, y sin este campo no se podría armar la vista «prioridad n.º 1».
 

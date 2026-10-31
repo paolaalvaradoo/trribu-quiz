@@ -52,6 +52,20 @@ Datos que faltan para publicar. No se inventó ninguno: el código queda listo y
 
 ## Lo que se cambió en `public/quiz.html` respecto del V41 original
 
+**Cambios de copy aprobados por Pao el 31-oct.** Son la única excepción a «no tocar copy». Los puntajes no cambian; lo verifican los tests.
+
+- **Caída.**
+  - La opción de la pregunta 1, `quiebre`, pasa de «Veo hebras cortas o partidas» a **«Se me cae más pelo» · «Lo veo en el cepillo, la almohada o la ducha»**.
+  - La tarjeta del resultado pasa a **«Notas que se te cae más pelo»**. Explica la diferencia entre quiebre (hebra corta, sin la bolita blanca) y pelo completo con la bolita de la raíz y en cantidad, en cuyo caso deriva al dermatólogo.
+  - La tarjeta «Te preocupa el pelo que ves en el cepillo» usa el mismo criterio.
+- **«Otro, ¿cuál?» en las preguntas 1 (señales), 3 (tratamientos) y 9 (futuros).**
+  - Al marcarlo, aparece un campo de hasta 80 caracteres.
+  - Va siempre al final, antes de la opción excluyente.
+  - No suma puntos.
+  - Se guarda en Klaviyo (`quiz_otro_senales`, `quiz_otro_tratamientos`, `quiz_otro_futuros`) y en Airtable (`p1_otro`, `p3_otro`, `p9_otro`).
+  - Si en la pregunta 1 marca solo «Otro», la tarjeta es «Nos contaste algo más», en lugar de «Tu pelo está bien hoy».
+- **Para revisar cada semana:** leer los textos de «Otro». Lo que se repita, como «keratina solo para brillo», se convierte en una opción fija en la versión siguiente.
+
 Solo integración, nada de copy, preguntas ni puntajes (el original está en `docs/quiz_V41_original.html`):
 
 - Se quitó el panel «SOLO REVISIÓN · PERFILES DE PRUEBA» y la función `previewCase` (§ 6).

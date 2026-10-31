@@ -206,3 +206,42 @@ test('ninguna llave privada en el front', () => {
   assert.doesNotMatch(html, /pk_[A-Za-z0-9]{10,}|pat[A-Za-z0-9]{10,}\.|Klaviyo-API-Key|AIRTABLE_TOKEN|shpat_/);
   assert.doesNotMatch(html, /qa-previews|previewCase|modo=lanzamiento/);
 });
+
+test('«Otro» no cambia la rutina ni los puntajes (2.000 al azar)', () => {
+  const eng = getEngine();
+  const base = { signos: ['frizz'], porosidad: 'media', tratamientos: ['ninguno'], calor: 'natural', tipo: 'lacio', grosor: 'medio', cuero: 'equilibrado', prio: ['frizz'], futuros: ['nada'] };
+  const pick = a => a[Math.random() * a.length | 0];
+  for (let i = 0; i < 2000; i++) {
+    const a = { ...base, signos: [pick(['enredo', 'quiebre', 'puntas', 'cuerpo', 'opaco', 'secoTodo', 'textura', 'canas', 'frizz'])], porosidad: pick(['alta', 'media', 'baja']),
+      tratamientos: [pick(['tinteRaices', 'tinteTodo', 'mechas', 'keratina'])], calor: pick(['natural', 'secadora', 'plancha', 'diario']),
+      prio: [pick(['enredo', 'quiebre', 'cuerpo', 'pelitos', 'canas', 'ondas', 'frizz', 'suave', 'brillo'])], futuros: [pick(['cejas', 'densidad', 'puntasDia', 'cueroPica'])] };
+    const conOtro = { ...a, signos: a.signos.concat('otro'), tratamientos: a.tratamientos.concat('otro'), futuros: a.futuros.concat('otro') };
+    const x = eng.run(a), y = eng.run(conOtro);
+    assert.equal(JSON.stringify([y.routine, y.m, y.c, y.needs]), JSON.stringify([x.routine, x.m, x.c, x.needs]));
+  }
+  // Solo «Otro» en la pregunta 1: no le decimos «Tu pelo está bien hoy».
+  const solo = eng.run({ ...base, signos: ['otro'], prio: ['prevenir'] });
+  assert.ok(!solo.cards.includes('Tu pelo está bien hoy'));
+});
+
+test('«Otro»: el texto se guarda solo si marcó «Otro», limpio y hasta 80 caracteres', async () => {
+  const { parseOtros } = require('../lib/submission');
+  const ans = { signos: ['frizz', 'otro'], tratamientos: ['ninguno'], futuros: ['otro'] };
+  assert.deepEqual(parseOtros({ signos: '  keratina   para <b>brillo</b> ', tratamientos: 'no marcó otro', futuros: 'x'.repeat(200) }, ans),
+    { signos: 'keratina para b brillo /b', futuros: 'x'.repeat(80) });
+  assert.deepEqual(parseOtros('texto', ans), {});
+  reset();
+  const b = body(); b.answers.signos = ['frizz', 'otro']; b.otros = { signos: 'Se me abre la raya' };
+  const r = await call(submit, { body: b });
+  assert.equal(r.status, 200);
+  assert.equal(airtableRows[b.submission_id].p1_otro, 'Se me abre la raya');
+  assert.equal(kPath('/profile-import')[0].body.data.attributes.properties.quiz_otro_senales, 'Se me abre la raya');
+});
+
+test('caída: la opción y la tarjeta usan sus palabras y derivan al dermatólogo', () => {
+  const eng = getEngine();
+  const q1 = eng.questions().find(q => q.id === 'signos').options.find(o => o.v === 'quiebre');
+  assert.equal(q1.l, 'Se me cae más pelo');
+  const r = eng.run({ signos: ['quiebre'], porosidad: 'media', tratamientos: ['ninguno'], calor: 'natural', tipo: 'lacio', grosor: 'medio', cuero: 'equilibrado', prio: ['frizz'], futuros: ['nada'] });
+  assert.ok(r.cards.includes('Notas que se te cae más pelo'));
+});
