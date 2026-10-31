@@ -24,14 +24,22 @@ S01 `QQqhSb` · S02 `QT2y54` · S03 `TQRgtp` · S10 `T2yGZt` · S11 `X7Mg99` · 
 
 S71 y S72 filtran «Placed Order» por la propiedad `Items` con los nombres de producto de Shopify («El Shampoo», «El Acondicionador», «La Mascarilla», «La Crema…»). Verificar con el primer pedido real que los nombres coinciden.
 
-## Flujos
+## Flujos (prelanzamiento)
 
-| Flujo | ID | Estado |
-|---|---|---|
-| F1 · Bienvenida lista de espera | `STrWsE` | **Activo.** Correo 1 activo; correos 2 (día 3) y 3 (día 7) en **manual** hasta que Pao los revise. Sale si compra. |
-| Quiz prelanzamiento · Bienvenida (V25) | `X94AbN` | Apagado (reemplazado por F1) |
-| F2 · Día de lanzamiento | — | Es campaña del 16-nov a S02 |
-| F3–F7 (lanzamiento) | — | Pendientes: dependen de las variantes de Shopify y de las decisiones de § 8 |
+Embudo: anuncio → landing (o quiz) → lista de espera → bienvenida → invitación al quiz → resultado.
+
+| Flujo | ID | Disparador | Qué hace | Estado |
+|---|---|---|---|---|
+| F1 · Bienvenida lista de espera (landing + quiz) | `VC7pKB` | Entra a la Lista de espera | Si hizo el quiz en las últimas 24 h → «Ya estás en la tribu» con su resultado. Si vino por la landing → «Ya estás en la lista»; día 2, si no hizo el quiz → «Queremos conocerte» (botón al quiz); día 5, si sigue sin hacerlo → «¿Conversamos sobre tu pelo?». Sale si compra. | Activo |
+| F1b · Tu resultado (quien ya estaba en la lista) | `TCpZpP` | Quiz completado en modo prelanzamiento, y lleva al menos 1 h en la lista | «Tu resultado: lo que necesita tu pelo» | Activo |
+| F1c · Historia y Sello | `X8Cw5p` | Entra a la Lista de espera | Día 7: historia de Pao e Isabel. Día 11: el Sello. | Activo, ambos correos en **manual** hasta que Pao complete los «[PAO: …]» |
+| F1 anterior y bienvenida V25 | `STrWsE`, `X94AbN` | — | Reemplazados | Apagados |
+| F2 · Día de lanzamiento | — | Campaña 16-nov a S02 | — | Pendiente |
+| F3–F7 (lanzamiento) | — | — | — | Pendientes: variantes de Shopify y § 8 |
+
+**Enlace al quiz en los correos de invitación:** hoy apunta a la página de prueba `https://cjatu3-cq.myshopify.com/pages/quiz-prueba`. **Cambiar por la URL definitiva antes de publicar** (plantillas «Invitación al quiz» y «Recordatorio del quiz»).
+
+**Origen de la inscripción:** la landing guarda `waitlist_origen = landing`; el quiz guarda las propiedades `quiz_*`.
 
 ## Perfiles de prueba
 Los dos correos de Pao (`@trribu.com` y `@grupokoti.pe`) están en Interno · Pruebas con un envío V41 de prueba cada uno (rutinas SAMC y SA), cargado como histórico (no disparó flujos). Sirvieron para crear las propiedades del perfil (paso 3 del Excel).
