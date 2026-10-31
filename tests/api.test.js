@@ -285,3 +285,14 @@ test('auditoría de coherencia (20.000 combinaciones) sin errores', () => {
   const { execFileSync } = require('child_process');
   execFileSync(process.execPath, [path.join(__dirname, '..', 'scripts', 'auditoria.js'), '20000'], { stdio: 'pipe' });
 });
+
+test('origen: «lista» si viene de los correos, «directo» en cualquier otro caso', async () => {
+  for (const [enviado, esperado] of [['lista', 'lista'], ['directo', 'directo'], ['otra-cosa', 'directo'], [undefined, 'directo']]) {
+    reset();
+    const b = body(); if (enviado !== undefined) b.origen = enviado;
+    const r = await call(submit, { body: b });
+    assert.equal(r.status, 200);
+    assert.equal(airtableRows[b.submission_id].origen, esperado);
+    assert.equal(kPath('/profile-import')[0].body.data.attributes.properties.quiz_origen, esperado);
+  }
+});

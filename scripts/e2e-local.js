@@ -87,6 +87,7 @@ async function runCase(browser, origin, modo, answers, expected, opt) {
     for (const v of [].concat(answers[id])) await page.click('#qopts .opt[data-v="' + v + '"]');
     await page.click('#qnext');
   }
+  const gate = await page.evaluate(() => ({ gated: document.getElementById('st-result').classList.contains('gated'), h2: document.querySelector('#r-mailsec h2').textContent, btn: document.getElementById('btnguardar').textContent, needsVisibles: !!document.getElementById('tr-needs').offsetParent }));
   await page.fill('#nombre', 'Prueba E2E');
   await page.fill('#mail', TEST_EMAIL);
   if (opt.whatsapp) await page.fill('#wa', opt.whatsapp);
@@ -97,6 +98,7 @@ async function runCase(browser, origin, modo, answers, expected, opt) {
   await page.click('#btnguardar');
   await page.waitForFunction(() => /recibida|No pudimos|Revisa|necesitamos/.test(document.getElementById('mailmsg').textContent));
   const msg = await page.textContent('#mailmsg');
+  const despues = await page.evaluate(() => ({ gated: document.getElementById('st-result').classList.contains('gated'), needsVisibles: !!document.getElementById('tr-needs').offsetParent }));
   const sid = await page.evaluate(() => quizSubmissionId());
   await page.screenshot({ path: path.join(ROOT, 'e2e-' + modo + '.png'), fullPage: true });
   if (opt.cart) { await page.click('.tr-close .tr-full'); await page.waitForTimeout(300); }
@@ -119,6 +121,8 @@ async function runCase(browser, origin, modo, answers, expected, opt) {
     'Consentimiento de correo respetado': opt.correo ? JSON.stringify(subs) === JSON.stringify([modo === 'lanzamiento' ? 'L_NEWS' : 'L_ESPERA']) : subs.length === 0,
     'Lista WhatsApp solo con c3': members.includes('L_WA') === !!(opt.c3 || opt.whatsapp),
     'Lista Panel solo con c4': members.includes('L_PANEL') === !!opt.panel,
+    'Correo antes del resultado (resultado oculto, botón ENVIARME MI RESULTADO)': gate.gated && !gate.needsVisibles && gate.btn === 'ENVIARME MI RESULTADO' && gate.h2 === 'Te enviamos tu resultado por correo' || JSON.stringify(gate),
+    'Después de enviar se ve el resultado': !despues.gated && despues.needsVisibles || JSON.stringify(despues),
     'Sin errores en la consola': errors.length === 0
   };
   if (opt.cart) checks['Carrito: permalink con exactamente la rutina'] = !!cartUrl && cartUrl.startsWith('https://trribu.com/cart/' + opt.cart.map(v => v + ':1').join(',') + '?attributes[quiz_submission_id]=' + sid) || ('URL: ' + cartUrl);

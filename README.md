@@ -1,5 +1,7 @@
 # trribu-quiz
 
+**Para Flama: empezar por `docs/PAQUETE_FLAMA.md`.**
+
 Quiz TRRIBÚ **V41** con el motor calculado en el servidor (Vercel), guardado en **Airtable**, sincronizado con **Klaviyo** y carrito de **Shopify** preparado.
 Fuente de verdad del copy, las preguntas y los puntajes: `public/quiz.html`. Instrucciones: `docs/TRRIBU_Quiz_Instrucciones_Claude_Code_V2_20261031.md`. Klaviyo: `docs/TRRIBU_Klaviyo_Configuracion_V1_20261031.xlsx`.
 
@@ -73,6 +75,7 @@ Se crea a mano una vez. El campo principal es `submission_id`. Con `typecast`, l
 | `p2_porosidad`, `p4_calor`, `p5_tipo`, `p6_grosor`, `p7_cuero`, `p8_prioridad_1`, `p10_edad` | selección simple |
 | `m`, `c` | número |
 | `tarjetas`, `error_klaviyo` | texto largo |
+| `origen` | selección simple: `lista` (vino de los correos) o `directo` (bio, anuncios) |
 | `p1_otro`, `p3_otro`, `p9_otro` | texto (lo que escribió en «Otro», máx. 80 caracteres) |
 
 `p8_prioridad_1` es un campo extra a lo pedido en la § 4. Airtable no puede agrupar por el primer elemento de una selección múltiple, y sin este campo no se podría armar la vista «prioridad n.º 1».

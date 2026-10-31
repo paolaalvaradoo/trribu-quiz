@@ -488,6 +488,7 @@ const QS = [
 ];
 
 let step = 0, answers = {}, OTROS = {};
+const ORIGEN_QUIZ = (new URLSearchParams(location.search).get('origen')==='lista') ? 'lista' : 'directo'; // ?origen=lista en los correos; sin parámetro = bio o anuncios
 const ORDEN = {};  // orden barajado por sesión (excluyentes al final)
 function ordenar(q, opts){
   if(!q.shuffle) return opts;
@@ -640,7 +641,7 @@ function guardar(){
   const tags = segmento().concat(MODO==='launch'?[]:['waitlist']); if(cb('c4')) tags.push('panel_si');
   const canas = sig('canas') ? (has('tinteRaices')||has('tinteTodo') ? 'canas_cubre' : 'canas_natural') : '';
   const {needMask, needCrema} = motor();
-  const payload = { evento:'Quiz completado', nombre, email: mail, whatsapp: wa ? '+51'+wa : null, consent:{datos:true, correo:cb('c2'), whatsapp:cb('c3'), panel:cb('c4')}, answers, otros:otrosTexto(), submission_id:quizSubmissionId(), modo:(MODO==='launch'?'lanzamiento':'prelanzamiento'), website:(document.getElementById('tr-website')||{}).value||'',
+  const payload = { evento:'Quiz completado', nombre, email: mail, whatsapp: wa ? '+51'+wa : null, consent:{datos:true, correo:cb('c2'), whatsapp:cb('c3'), panel:cb('c4')}, answers, otros:otrosTexto(), origen:ORIGEN_QUIZ, submission_id:quizSubmissionId(), modo:(MODO==='launch'?'lanzamiento':'prelanzamiento'), website:(document.getElementById('tr-website')||{}).value||'',
     propiedades:{ quiz_version:(MODO==='launch'?'lanzamiento_v41':'prelanzamiento_v41'), quiz_fecha:new Date().toISOString(), quiz_submission_id:quizSubmissionId(), quiz_schema_version:'v33_10preguntas', quiz_scoring_version:'v38', quiz_result_needs:needsVisual(), quiz_result_findings:hallazgos(), quiz_score_mask:motor().m, quiz_score_crema:motor().c, quiz_routine_code:(!needMask&&!needCrema?'SA':needMask&&!needCrema?'SAM':!needMask&&needCrema?'SAC':'SAMC'),
       quiz_senales:answers.signos||[], quiz_porosidad:answers.porosidad||'', quiz_tratamientos:answers.tratamientos||[],
       quiz_calor:answers.calor||'', quiz_tipo:answers.tipo||'', quiz_grosor:answers.grosor||'', quiz_cuero:answers.cuero||'',
@@ -841,6 +842,62 @@ function agregarAlCarrito(btn){
     location.href=tienda+'/cart/'+vars.map(function(v){return v+':1';}).join(',')+'?attributes[quiz_submission_id]='+encodeURIComponent(sid);
   }
 }
+</script>
+<style id="gate">
+#st-result.gated .tr-result>*:not(#r-mailsec){display:none!important}
+#st-result.gated #r-mailsec{border-top:none;margin-top:0;padding-top:6px}
+.tr-ver{display:block;margin:16px auto 0;background:none;border:0;color:#8C887E;font-size:13px;text-decoration:underline;cursor:pointer}
+.tr-ok{background:#EEF2E6;color:#4F6B33;padding:12px 14px;font-size:14px;margin:0 0 18px}
+</style>
+<script>
+/* ══ CORREO ANTES DEL RESULTADO (decisión de Pao, 31-oct; probado en la página de prueba de Shopify) ══
+   ?origen=lista → viene de los correos (ya está en la lista): «¿A qué correo te enviamos tu resultado?»
+   sin parámetro → llega directo (bio, anuncios): «Te enviamos tu resultado por correo»
+   Botón «ENVIARME MI RESULTADO» y, en tenue, «Prefiero verlo en pantalla» (muestra el resultado sin correo).
+   En el servidor (lib/engine.js carga este HTML sin DOM) este bloque no se ejecuta. */
+(function(){
+  if(typeof document==='undefined' || !document.body) return;
+  var sec=document.getElementById('r-mailsec'), st=document.getElementById('st-result'), btn=document.getElementById('btnguardar');
+  if(!sec||!st||!btn||typeof btn.insertAdjacentElement!=='function') return;
+  var TXT=ORIGEN_QUIZ==='lista'
+    ? {eyebrow:'TU RESULTADO ESTÁ LISTO', h2:'¿A qué correo te enviamos tu resultado?'}
+    : {eyebrow:'TU RESULTADO ESTÁ LISTO', h2:'Te enviamos tu resultado por correo'};
+  var BOTON='ENVIARME MI RESULTADO', VER='Prefiero verlo en pantalla';
+  var eb=sec.querySelector('.eyebrow'), h2=sec.querySelector('h2'), ORIG=null, enviado=false;
+  var ver=document.createElement('button'); ver.type='button'; ver.className='tr-ver'; ver.textContent=VER;
+  btn.insertAdjacentElement('afterend', ver);
+  function abrirGate(){
+    ORIG={eyebrow:eb.textContent, h2:h2.textContent, boton:btn.textContent}; // textos del modo actual (prelanzamiento o lanzamiento)
+    st.classList.add('gated'); ver.hidden=false;
+    eb.textContent=TXT.eyebrow; h2.textContent=TXT.h2; btn.textContent=BOTON;
+  }
+  function mostrarResultado(conCorreo){
+    st.classList.remove('gated'); ver.hidden=true;
+    if(conCorreo){
+      sec.hidden=true;
+      var panel=st.querySelector('.tr-result'), ok=document.getElementById('tr-ok')||document.createElement('p');
+      ok.id='tr-ok'; ok.className='tr-ok'; ok.textContent='Listo. También te lo enviamos a tu correo.';
+      panel.insertBefore(ok, panel.firstChild);
+    } else if(ORIG){ eb.textContent=ORIG.eyebrow; h2.textContent=ORIG.h2; btn.textContent=ORIG.boton; }
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  ver.onclick=function(){ mostrarResultado(false); };
+  var _resultado=window.resultado;
+  window.resultado=resultado=function(){ _resultado(); if(!enviado) abrirGate(); };
+  var _guardar=window.guardar;
+  window.guardar=guardar=function(){
+    var gated=st.classList.contains('gated'), r=_guardar();
+    if(r&&r.then) r.then(function(){ if(document.getElementById('mail').disabled){ enviado=true; if(gated) mostrarResultado(true); } });
+    return r;
+  };
+  var _restart=window.restart;
+  window.restart=restart=function(){
+    enviado=false; sec.hidden=false; ver.hidden=false;
+    var ok=document.getElementById('tr-ok'); if(ok) ok.remove();
+    if(ORIG){ eb.textContent=ORIG.eyebrow; h2.textContent=ORIG.h2; btn.textContent=ORIG.boton; }
+    _restart();
+  };
+})();
 </script>
 </body>
 </html>
