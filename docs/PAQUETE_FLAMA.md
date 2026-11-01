@@ -43,6 +43,7 @@ Pao probó el recorrido completo con correos reales el 31-oct. Todo lo que apare
 | Quiz V41 integrado | `trribu-quiz/public/quiz.html` | Quiz final con todos los cambios aprobados el 31-oct (sección 3) |
 | Endpoint | `trribu-quiz/api/`, `trribu-quiz/lib/` | Valida, recalcula el resultado en el servidor y escribe en Airtable y Klaviyo |
 | Tests | `trribu-quiz/tests/`, `trribu-quiz/scripts/` | 22 tests, auditoría de coherencia y prueba de punta a punta en navegador; corren en GitHub Actions |
+| **Catálogo de textos** | `trribu-quiz/docs/TEXTOS_PERSONALIZADOS.md` | Todas las frases del resultado y de los correos, y cuándo aparece cada una (sección 10 de este documento) |
 | Documentación de Klaviyo | `trribu-quiz/docs/KLAVIYO.md` | IDs de listas, métricas, 45 segmentos y flujos |
 | Pendientes | `trribu-quiz/PREGUNTAS_PARA_PAO.md` | Decisiones abiertas y todo lo que cambió respecto del V41 original |
 | Original V41 | `trribu-quiz/docs/quiz_V41_original.html` | Para comparar |
@@ -318,3 +319,9 @@ E2E_URL=https://… E2E_EMAIL=… AIRTABLE_TOKEN=… AIRTABLE_BASE_ID=… KLAVIY
 | 10 | Fotos de la pregunta 5 (hoy son ilustraciones provisionales) | — |
 
 El detalle de cada una está en `PREGUNTAS_PARA_PAO.md`.
+
+---
+
+## 10. Catálogo de textos personalizados
+
+El detalle completo está en `docs/TEXTOS_PERSONALIZADOS.md` y aparece a continuación en la versión web de este documento.
