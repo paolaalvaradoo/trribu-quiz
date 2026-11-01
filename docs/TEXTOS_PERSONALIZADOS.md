@@ -124,13 +124,16 @@ Una frase bajo las tarjetas, solo en prelanzamiento. En lanzamiento va dentro de
 
 - **Total:** *«Tu rutina: S/ …»*
 - **Regalo:** *«De regalo: La Mascarilla (100 ml) y La Crema (El Acondicionador Sin Enjuague) (50 ml) en tamaño viaje»*, más *«y La Toalla»* si su rutina trae los 4 productos.
-- **Botón:** **AGREGAR MI RUTINA AL CARRITO**.
+- **Botón:** **AGREGAR MI RUTINA AL CARRITO** (con 3 productos, los dos botones de arriba).
 - **Formulario de abajo:** **TU RUTINA POR CORREO** · *«¿Te la mandamos para tenerla a mano?»* · botón **ENVIARME MI RUTINA**.
 
 **Oferta de lanzamiento (confirmada por Pao el 1-nov):**
 - **Rutina de 2 productos** (El Shampoo + El Acondicionador): de regalo La Mascarilla (100 ml) y La Crema (El Acondicionador Sin Enjuague) (50 ml) en tamaño viaje.
 - **Rutina de 4 productos:** los mismos 2 tamaños viaje **+ La Toalla**.
-- **Rutina de 3 productos** (con La Mascarilla o con La Crema (El Acondicionador Sin Enjuague)): hoy el quiz muestra los 2 tamaños viaje, sin La Toalla. **Pao debe confirmarlo.**
+- **Rutina de 3 productos: sin regalo** (decisión de Pao: que se animen a llevar el cuarteto). El quiz muestra:
+  - *«**Completa el cuarteto** y llévate de regalo La Mascarilla (100 ml) y La Crema (El Acondicionador Sin Enjuague) (50 ml) en tamaño viaje, y La Toalla.»*
+  - Botón principal: **QUIERO EL CUARTETO COMPLETO** (agrega los 4 productos).
+  - Botón secundario: **AGREGAR SOLO MI RUTINA** (agrega sus 3 productos).
 - El quiz ya muestra esta línea en modo lanzamiento. **Falta configurarlo en Shopify** para que el regalo entre al pedido: descuento automático «compra X, lleva Y», Shopify Function o app de regalos.
 
 Precios: los confirma Pao antes del lanzamiento.
