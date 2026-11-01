@@ -49,6 +49,8 @@ Pao probó el recorrido completo con correos reales el 31-oct. Todo lo que apare
 | Original V41 | `trribu-quiz/docs/quiz_V41_original.html` | Para comparar |
 | Excel de Klaviyo | `trribu-quiz/docs/TRRIBU_Klaviyo_Configuracion_V1_20261031.xlsx` | Configuración de referencia |
 | Página de prueba del quiz | `trribu-web/templates/page.quiz-prueba.liquid` | El quiz dentro de Shopify, enviando directo a Klaviyo (solo para pruebas) |
+| **Landing V14 original de Flama** | `landing/TRRIBU_Landing_Prelanzamiento_V14_Final_Flama.html` (en el ZIP) | La versión que entregó Flama, sin tocar |
+| **Páginas de prueba en HTML** | `landing/landing-prueba-conectada.html`, `landing/quiz-prueba-conectado.html` (en el ZIP) | Las mismas páginas de prueba de Shopify como HTML simple, para abrir en el navegador |
 | Página de prueba de la landing | `trribu-web/templates/page.landing-prueba.liquid` | Landing V14 de Flama con el formulario conectado a Klaviyo (solo para pruebas) |
 
 **Páginas de prueba en la tienda** (protegidas con contraseña y fuera de Google):
@@ -309,7 +311,7 @@ E2E_URL=https://… E2E_EMAIL=… AIRTABLE_TOKEN=… AIRTABLE_BASE_ID=… KLAVIY
 |---|---|---|
 | 1 | Dónde vive el quiz definitivo: tema de Shopify o Vercel, y su URL | Los links de los correos |
 | 2 | Política de privacidad: URL y revisión legal (Ley 29733) | La publicación |
-| 3 | Cómo se entregan los regalos de lanzamiento en Shopify | El lanzamiento |
+| 3 | Regalos de lanzamiento. **Oferta confirmada:** 2 productos + 2 tamaños viaje (La Mascarilla 100 ml y La Crema (El Acondicionador Sin Enjuague) 50 ml); 4 productos + 2 tamaños viaje + La Toalla. **Pendiente:** la rutina de 3 productos y cómo se configura en Shopify | El lanzamiento |
 | 4 | Canal de WhatsApp: Klaviyo, YaVendio o solo guardar el dato | El uso de c3 |
 | 5 | Mensajes por edad | Las campañas por tramo |
 | 6 | IDs de variantes de los 4 productos, los 2 tamaños de viaje y La Toalla | El carrito |
