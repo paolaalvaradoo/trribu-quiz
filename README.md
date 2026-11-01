@@ -43,7 +43,7 @@ Plantilla en `.env.example`. **Ninguna llave va en el repo ni en el HTML.**
 
 | Variable | Obligatoria | Qué es |
 |---|---|---|
-| `QUIZ_MODO` | sí | `prelanzamiento` (hoy) o `lanzamiento` (desde el 16-nov) |
+| `QUIZ_MODO` | sí | `prelanzamiento` (hoy) o `lanzamiento` (desde el 1-dic, fecha oficial de lanzamiento) |
 | `KLAVIYO_PRIVATE_API_KEY` | sí | Llave privada con permisos: Profiles, Events, Subscriptions y Lists (escritura) |
 | `KLAVIYO_REVISION` | sí | Revisión de la API; verificar la vigente (hoy `2025-10-15`) |
 | `KLAVIYO_LIST_ESPERA` | sí (prelanzamiento) | ID de «TRRIBÚ · Lista de espera» |

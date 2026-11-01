@@ -23,8 +23,10 @@ Pao probó el recorrido completo con correos reales el 31-oct. Todo lo que apare
 | 5 | Cambiar el link del quiz en dos correos de Klaviyo a la URL definitiva | Sección 6.4 | Hoy apuntan a la página de prueba |
 | 6 | Integrar el formulario de la landing V14 con Klaviyo, con los ajustes legales | Sección 7 | Hay una versión de prueba que funciona |
 | 7 | Cargar los IDs de variantes de Shopify para el carrito | Sección 9, decisión 6 | Pendiente |
-| 8 | Construir los flujos de lanzamiento F2 a F7 | Excel de Klaviyo | Pendiente (16-nov) |
+| 8 | Construir los flujos de lanzamiento F2 a F7 | Excel de Klaviyo | Pendiente (lanzamiento 1-dic) |
 | 9 | Correr la prueba real (`scripts/e2e-remote.js`) con un correo de Interno · Pruebas | Sección 8 | Después del paso 3 |
+
+**Fecha oficial de lanzamiento: 1 de diciembre de 2026** (confirmada por Pao el 1-nov). Los documentos anteriores que dicen 16-nov están desactualizados.
 
 **Reglas que no se negocian**
 - **Copy, preguntas y puntajes.** `public/quiz.html` es la fuente de verdad: no se cambian textos, preguntas ni puntajes sin aprobación de Pao.
@@ -169,7 +171,7 @@ Cada producto entra si su puntaje llega a **6**.
 
 | Variable | Valor |
 |---|---|
-| `QUIZ_MODO` | `prelanzamiento`; pasa a `lanzamiento` el 16-nov |
+| `QUIZ_MODO` | `prelanzamiento`; pasa a `lanzamiento` el 1-dic |
 | `KLAVIYO_PRIVATE_API_KEY` | Llave privada con permisos de escritura en Profiles, Events, Subscriptions y Lists |
 | `KLAVIYO_REVISION` | `2025-10-15` (confirmar la vigente) |
 | `KLAVIYO_LIST_ESPERA` | `WQDPdj` |

@@ -37,7 +37,7 @@ Embudo: anuncio → landing (o quiz) → lista de espera → bienvenida → invi
 | F1b · versión anterior | `VLiqiC` | Exigía 1 h en la lista: quien se inscribía en la landing y hacía el quiz enseguida no recibía su resultado | — | Apagado el 31-oct |
 | F1c · Historia y Sello | `X8Cw5p` | Entra a la Lista de espera | Día 7: historia de Pao e Isabel. Día 11: el Sello. | Activo, ambos correos en **manual** hasta que Pao complete los «[PAO: …]» |
 | F1 anterior y bienvenida V25 | `STrWsE`, `X94AbN` | — | Reemplazados | Apagados |
-| F2 · Día de lanzamiento | — | Campaña 16-nov a S02 | — | Pendiente |
+| F2 · Día de lanzamiento | — | Campaña 1-dic a S02 | — | Pendiente |
 | F3–F7 (lanzamiento) | — | — | — | Pendientes: variantes de Shopify y § 8 |
 
 **Enlace al quiz en los correos de invitación:** hoy apunta a la página de prueba `https://cjatu3-cq.myshopify.com/pages/quiz-prueba`. **Cambiar por la URL definitiva antes de publicar** (plantillas «Invitación al quiz» y «Recordatorio del quiz»).
