@@ -14,6 +14,32 @@ Datos que faltan para publicar. No se inventó ninguno: el código queda listo y
 | 6 | **IDs de variantes** de los 4 productos, los 2 tamaños de viaje y La Toalla. Bloquea el carrito. | Con «PENDIENTE», el botón muestra el aviso del HTML. Con los IDs, arma el carrito con exactamente la rutina y `quiz_submission_id` como atributo. | `config/shopify-variants.json` |
 | 7 | ✅ **Resuelto 31-oct:** listas creadas con los nombres del Excel (IDs en `docs/KLAVIYO.md`). Queda confirmar el nombre final de «Newsletter». **Nombres e IDs de las listas en Klaviyo.** El Excel propone: TRRIBÚ · Lista de espera, TRRIBÚ · Newsletter (nombre pendiente), TRRIBÚ · WhatsApp, TRRIBÚ · Panel de pruebas e Interno · Pruebas. | El código usa variables de entorno con los IDs. Las listas todavía no están creadas (paso 2 del Excel, a cargo de Flama). | `KLAVIYO_LIST_*` |
 
+## Plan de comunicación por correo (Klaviyo), ligado a redes · PENDIENTE (decisión de Pao, 1-nov)
+
+Los correos de historia (día 7) y sello (día 11) del flujo F1c se apagaron (`X8Cw5p` en borrador). No van como goteo por días desde la inscripción. Van dentro de un **plan de comunicación** hacia el lanzamiento del **1 de diciembre**, sincronizado con redes.
+
+**Qué tiene que definir el plan**
+- **Correos de calendario hacia el lanzamiento.** Les llegan a todas el mismo día: qué se cuenta y en qué orden.
+  - Regla de marca: primero historia e integridad, luego el mecanismo simple, al final resultados.
+  - Antes del lanzamiento: nada de producto, de TRRIBOND ni de precio.
+- **El correo del día de lanzamiento.** Corto, presenta la marca y lleva a la web. Para quien hizo el quiz, también su rutina.
+- **Secuencias después del lanzamiento:** la tecnología (TRRIBOND, con nombre de consumidor + INCI), la historia, el sello, la reposición.
+- **Quién se inscribe tarde.** Qué correos de calendario recibe en su bienvenida automática, para no perderse la historia.
+- **Coordinación con redes:** el mismo tema la misma semana en correo, posts y reels.
+- **Responsables:** Pao aprueba, Karen ejecuta y la agencia aporta la idea creativa y los copies finales.
+
+**Insumos de la historia de Pao** (entregados el 1-nov; el texto final, pendiente):
+- Hoy tiene 50 años. A los 45 notó que su pelo cambió: otra textura, más frágil, se quebraba, cada hebra más fina, esponjado. Terminaba amarrándoselo.
+- Probó de todo, incluso mascarilla en lugar de acondicionador. Las ondas naturales le duraban poco.
+- Lo que más la frustró: no quería dejar sus mechas y sentía el pelo frágil, débil y esponjado.
+- Isabel es su mamá. Le enseñó cómo cuidar a una persona que amas. «Es la ausencia más presente de mi vida.» Lo público es su nombre y que tuvo cáncer.
+- Borrador propuesto el 1-nov (no aprobado):
+  - «Tengo 50 años. A los 45 mi pelo empezó a cambiar…»
+  - Usa «cada hebra más fina» en lugar de «se me adelgazaba el pelo», para hablar solo de la fibra.
+  - No menciona «hormonal».
+
+**Texto propuesto para el sello** (no aprobado): «Cuando el pelo cambia, cambia también lo que necesita. Por eso, para nosotras, lo que dejamos fuera importa tanto como lo que entra: cada ingrediente pasa por este filtro, y si no lo pasa, no entra. Muchas empezamos a leer etiquetas cuando el cuerpo empezó a cambiar. Queríamos que leer la nuestra fuera fácil.» Sin TRRIBOND y sin fecha fija.
+
 ## Para Flama · Dos caminos de entrada al quiz (decisión de Pao, 31-oct)
 
 **Camino 1. Inscrita en la lista de espera.**
@@ -41,7 +67,7 @@ Datos que faltan para publicar. No se inventó ninguno: el código queda listo y
 
 ## Otras preguntas que salieron al integrar
 
-8. ✅ **Resuelto 31-oct:** `WQDPdj` se renombró a «TRRIBÚ · Lista de espera»; el flujo V25 se apagó y lo reemplaza F1 (`STrWsE`), cuyo correo 1 muestra el resultado V41 (y el V25 para quien entre desde el quiz anterior). **Pendiente tuyo:** completar los textos marcados «[PAO: …]» de los correos 2 y 3 de F1 y pasarlos de «manual» a «activo». El correo 3 trae una duda: el Excel pide hablar de TRRIBOND el día 7, pero la guía de marca dice «cero TRRIBOND» antes del lanzamiento.
+8. ⏸ **Actualizado 1-nov: F1c (historia y sello) quedó en borrador; pasa al plan de comunicación, ver arriba.** Antes: `WQDPdj` se renombró a «TRRIBÚ · Lista de espera»; el flujo V25 se apagó y lo reemplaza F1 (`STrWsE`), cuyo correo 1 muestra el resultado V41 (y el V25 para quien entre desde el quiz anterior). **Pendiente tuyo:** completar los textos marcados «[PAO: …]» de los correos 2 y 3 de F1 y pasarlos de «manual» a «activo». El correo 3 trae una duda: el Excel pide hablar de TRRIBOND el día 7, pero la guía de marca dice «cero TRRIBOND» antes del lanzamiento.
 9. **Mensaje de éxito en modo lanzamiento.** El HTML muestra el mismo texto en los dos modos: «Tu solicitud fue recibida. Te escribiremos cuando tengamos novedades.» En lanzamiento, el botón dice «ENVIARME MI RUTINA». ¿Debería decir otra cosa, por ejemplo que la rutina llega por correo? No lo cambié: es copy.
 10. **Correo 1 de F3 «Tu rutina» (lanzamiento).** El Excel lo marca como transaccional, para enviarlo aunque no marque c2. El HTML exige c2 o c3 para enviar el formulario («Para recibir novedades, autoriza al menos un canal»). Si alguien quiere su rutina por correo pero no marca c2, hoy no puede enviarla. ¿Se ajusta esa regla en lanzamiento?
 11. **Frecuencia del reintento a Klaviyo.** En el plan Hobby de Vercel, el cron solo puede correr una vez al día; quedó a las 8:00 a. m. de Lima. Si Flama tiene el plan Pro, se puede pasar a cada 30 minutos. ¿Qué plan usa?

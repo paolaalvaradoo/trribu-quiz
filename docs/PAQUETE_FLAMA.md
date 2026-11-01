@@ -237,7 +237,7 @@ Todos los IDs están en `docs/KLAVIYO.md`.
 |---|---|---|
 | F1 · Bienvenida lista de espera | `VC7pKB` | Al entrar a la lista: **si hizo el quiz** → «Ya estás en la tribu» con su resultado. **Si vino por la landing** → «Ya estás en la lista»; el día 2, si no hizo el quiz → «Queremos conocerte»; el día 5, si sigue sin hacerlo → «¿Conversamos sobre tu pelo?». Sale si compra. |
 | F1b · Tu resultado v2 | `SDdF8t` | Cada vez que alguien de la lista hace el quiz → «Tu resultado: lo que necesita tu pelo», 15 min después, sin límite de repeticiones. No se envía si en la última hora recibió «Ya estás en la tribu», para no duplicar. |
-| F1c · Historia y Sello | `X8Cw5p` | Día 7 y día 11. **En manual** hasta que Pao complete los textos. |
+| F1c · Historia y Sello | `X8Cw5p` | **En borrador (1-nov).** No se usa como goteo por días: esos contenidos pasan al plan de comunicación (sección 9). |
 
 **Apagados:** `STrWsE`, `X94AbN`, `TCpZpP` y `VLiqiC` (versiones anteriores).
 
@@ -312,7 +312,7 @@ E2E_URL=https://… E2E_EMAIL=… AIRTABLE_TOKEN=… AIRTABLE_BASE_ID=… KLAVIY
 | 4 | Canal de WhatsApp: Klaviyo, YaVendio o solo guardar el dato | El uso de c3 |
 | 5 | Mensajes por edad | Las campañas por tramo |
 | 6 | IDs de variantes de los 4 productos, los 2 tamaños de viaje y La Toalla | El carrito |
-| 7 | Textos de los correos de historia y sello (F1c), y TRRIBOND el día 7 frente a la regla de marca | La activación de F1c |
+| 7 | **Plan de comunicación por correo (Klaviyo), ligado a redes:** correos de calendario hacia el 1-dic, correo del día de lanzamiento (corto, lleva a la web), secuencias posteriores (tecnología/TRRIBOND, historia, sello, reposición) y qué recibe quien se inscribe tarde. Incluye los textos de historia y sello; los insumos de Pao están en `PREGUNTAS_PARA_PAO.md` | Los correos de prelanzamiento y lanzamiento |
 | 8 | Aceptar que quien elige «Prefiero verlo en pantalla» no queda registrada | — |
 | 9 | Plan de Vercel (el cron cada 30 min requiere Pro) y límite de envíos global (KV o Upstash) | — |
 | 10 | Fotos de la pregunta 5 (hoy son ilustraciones provisionales) | — |
